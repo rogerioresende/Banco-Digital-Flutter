@@ -1,6 +1,5 @@
+import 'package:banco_digital/modules/transferencia.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_alfabank/modules/transferencia.dart';
-
 
 
 class ItemTransferencia extends StatelessWidget {

@@ -1,14 +1,15 @@
-import 'package:flutter_alfabank/modules/cadastro.dart';
+import 'package:banco_digital/modules/cadastro.dart';
 import 'package:flutter/material.dart';
-
 import '../components/editor.dart';
 import 'confirmar_cadastro.dart';
 
 class FormularioCadastro extends StatelessWidget {
 
   final TextEditingController _controladorCampoNome = TextEditingController();
+  final TextEditingController _controladorCampoSobrenome = TextEditingController();
   final TextEditingController _controladorCampoCpf = TextEditingController();
   final TextEditingController _controladorCampoEmail = TextEditingController();
+  final TextEditingController _controladorCampoSenha = TextEditingController();
   final TextEditingController _controladorCampoTelefone = TextEditingController();
 
   @override
@@ -24,8 +25,14 @@ class FormularioCadastro extends StatelessWidget {
               Editor(
                 controller: this._controladorCampoNome,
                 rotulo: "Nome",
-                dica: "Rogério Resende",
+                dica: "Paulo",
                 tipoInput: TextInputType.text,
+              ),
+              Editor(
+                controller: this._controladorCampoSobrenome,
+                rotulo: "Sobrenome",
+                dica: "Henrique",
+                tipoInput: TextInputType.number,
               ),
               Editor(
                 controller: this._controladorCampoCpf,
@@ -36,7 +43,13 @@ class FormularioCadastro extends StatelessWidget {
               Editor(
                 controller: this._controladorCampoEmail,
                 rotulo: "E-mail",
-                dica: "rogeriord@gmail.com",
+                dica: "paulohenrique@gmail.com",
+                tipoInput: TextInputType.text,
+              ),
+              Editor(
+                controller: this._controladorCampoSenha,
+                rotulo: "Senha",
+                dica: "1234",
                 tipoInput: TextInputType.text,
               ),
               Editor(
@@ -48,17 +61,26 @@ class FormularioCadastro extends StatelessWidget {
               RaisedButton(
                 onPressed: () {
                   var nome = this._controladorCampoNome.text;
+                  var sobrenome = this._controladorCampoSobrenome.text;
                   var cpf = this._controladorCampoCpf.text;
-                  var email = this._controladorCampoTelefone.text;
+                  var email = this._controladorCampoEmail.text;
+                  var senha = this._controladorCampoSenha.text;
                   var telefone = this._controladorCampoTelefone.text;
 
-                  Cadastro cadastro = Cadastro(nome, cpf, email, telefone);
+                  Cadastro cadastro = Cadastro(
+                    nome: nome, 
+                    sobrenome: sobrenome, 
+                    cpf: cpf, 
+                    email: email,
+                    senha: senha,
+                    telefone: telefone
+                  );
 
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return ConfirmarCadastro(cadastro);
-                      })
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return ConfirmarCadastro(cadastro);
+                    }) 
                   );
                 },
                 child: Text("Proximo"),
